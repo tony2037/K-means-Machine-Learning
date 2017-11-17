@@ -1,0 +1,33 @@
+tf.argmin(input, dimension, name=None)
+
+函數解說：沿著需要的維度找尋最小值的索引值，最小由0開始
+
+
+tf.reduce_sum()
+reduce_sum() 就是求和，由于求和的对象是tensor，所以是沿着tensor的某些维度求和。reduction_indices是指沿tensor的哪些维度求和。
+https://www.zhihu.com/question/51325408
+
+
+tf.reshape(tensor,shape, name=None) 
+函数的作用是将tensor变换为参数shape的形式。 
+其中shape为一个列表形式，特殊的一点是列表中可以存在-1。-1代表的含义是不用我们自己指定这一维的大小，函数会自动计算，但列表中只能存在一个-1。（当然如果存在多个-1，就是一个存在多解的方程了）
+好了我想说的重点还有一个就是根据shape如何变换矩阵。其实简单的想就是，
+reshape（t, shape） => reshape(t, [-1]) =>reshape(t, shape)
+首先将矩阵t变为一维矩阵，然后再对矩阵的形式更改就可以了。
+http://blog.csdn.net/zeuseign/article/details/72742559
+
+
+tile() 平铺之意，用于在同一维度上的复制
+http://blog.csdn.net/xwd18280820053/article/details/72867818
+
+tf.reduce_any() 计算tensor中各个元素的逻辑或（or运算)
+http://blog.csdn.net/lhanchao/article/details/51442182
+
+
+tf.unsorted_segment_sum(data, segment_ids, num_segments, name=None)
+
+解释：这个函数的作用是沿着segment_ids指定的维度，分割张量data中的值，并且返回累加值。
+计算公式为:
+其中，segment_ids[j] == i。这个API和SegmentSum最大的区别是，这个API不需要从0到k有序排列，可以乱序排列，并且该API不需要包含从0到k。
+如果对于给定的分割区间ID i，output[i] = 0。那么，num_segmetns应该等于不同的段ID的数量。
+http://www.jianshu.com/p/4daafdbcdddf
